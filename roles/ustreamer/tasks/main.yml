@@ -1,0 +1,23 @@
+---
+- name: Gather the package facts
+  ansible.builtin.package_facts:
+    manager: auto
+
+- name: Print the package facts
+  ansible.builtin.debug:
+    var: ansible_facts.packages
+
+- name: Check whether a package called foobar is installed
+  ansible.builtin.debug:
+    msg: "{{ ansible_facts.packages['foobar'] | length }} versions of foobar are installed!"
+  when: "'foobar' in ansible_facts.packages"
+
+# - name: install apt_key dependency
+#   apt:
+#     name: gnupg
+
+# - name: add archive apt repository key
+#   apt_key:
+#     url: https://ftp-master.debian.org/keys/archive-key-11.asc
+#     state: present
+#   when: ustreamer_is_os_raspbian or ustreamer_is_os_debian

@@ -1,0 +1,16 @@
+---
+- name: Install Nginx and Ustreamer
+  hosts: localhost
+  #remote_user: root
+  # remote_user: user
+  # become: yes
+  # become_method: sudo
+
+  roles:
+    - role: ustreamer
+    - role: nginx
+      # become: yes
+    # - mysql
+    # - nginx
+    # - php-fpm
+    # - wordpress
